@@ -29,3 +29,4 @@ source $ZSH/oh-my-zsh.sh
 alias l="ls -CAF --color=auto"
 alias ls="ls -CAF --color=auto"
 alias grep="grep --color=auto"
+alias gs="git status"

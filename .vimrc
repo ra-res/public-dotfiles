@@ -21,6 +21,10 @@ set expandtab
 set showtabline=2
 set swapfile
 
+set cursorline
+set cursorcolumn
+set visualbell
+
 filetype plugin on
 filetype plugin indent on 
 

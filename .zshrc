@@ -4,7 +4,7 @@ export EDITOR='vim'
 
 # Themes
 # ZSH_THEME="robbyrussell"
-export PROMPT='%F{111}%m:%b%F{2}%~ $%f '
+export PROMPT='%B%F{2}%m:%B%F{12}%~ $%f%b '
 
 # Uncomment one of the following lines to change the auto-update behavior
 zstyle ':omz:update' mode disabled  # disable automatic updates

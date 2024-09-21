@@ -18,15 +18,6 @@ ZSH_CUSTOM=$ZDOTDIR/custom
 plugins=(git z vi-mode zsh-autosuggestions zsh-syntax-highlighting)
 VI_MODE_SET_CURSOR=false
 
-autoload -Uz colors
-colors
-bg1='#bdf'; bg2='#259'; bg3='236';
-fg1='#259'; fg2='#bdf'; fg3='245';
-PROMPT_HOSTNAME="%K{$bg1}%F{$fg1} %n %K{$bg2}%F{$bg1}"
-PROMPT_OS_AND_KERNEL="%K{$bg2}%F{$fg2}%m %(!.%K{red}%F{$bg2}.%K{$bg3}%F{$bg2})"
-PROMPT_DIRECTORY="%(!.%K{red}%F{white}.%K{$bg3}%F{$fg3})%1~ %(!.%k%F{red}.%k%F{$bg3}) "
-PROMPT="${PROMPT_HOSTNAME} ${PROMPT_OS_AND_KERNEL} ${PROMPT_DIRECTORY}%f%k"
-
 alias python='python3'
 alias l="ls -CAF --color=auto"
 alias ls="ls -CAF --color=auto"
@@ -48,3 +39,13 @@ function tn() (
          echo "no session name"
      fi
   )
+
+autoload -Uz colors
+colors
+bg1='#259'; bg2='238'; bg3='236';
+fg1='#cee'; fg2='#ccc'; fg3='248';
+PROMPT_HOSTNAME="%K{$bg1}%F{$fg1} %n %K{$bg2}%F{$bg1}"
+PROMPT_OS_AND_KERNEL="%K{$bg2}%F{$fg2}%m %(!.%K{red}%F{$bg2}.%K{$bg3}%F{$bg2})"
+PROMPT_DIRECTORY="%(!.%K{red}%F{white}.%K{$bg3}%F{$fg3})%1~ %(!.%k%F{red}.%k%F{$bg3})"
+# GIT_INFO='%(!.%K{red}%F{white}.%K{$bg4}%F{$fg4})$(git_prompt_info)%(!.%k%F{red}.%k%F{$bg4})'
+PROMPT="${PROMPT_HOSTNAME} ${PROMPT_OS_AND_KERNEL} ${PROMPT_DIRECTORY}%f%k "

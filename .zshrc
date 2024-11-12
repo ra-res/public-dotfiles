@@ -13,7 +13,7 @@ setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a d
 setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-plugins=(git z vi-mode zsh-autosuggestions zsh-syntax-highlighting aliases alias-finder)
+plugins=(git z vi-mode zsh-autosuggestions zsh-syntax-highlighting aliases alias-finder fzf)
 VI_MODE_SET_CURSOR=true
 export FZF_DEFAULT_OPTS='--layout=reverse'
 

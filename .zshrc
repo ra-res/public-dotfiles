@@ -1,7 +1,7 @@
-# Exports
 export ZSH="$HOME/.oh-my-zsh"
 
-HISTFILE=".histfile"             # Save 100000 lines of history
+# Settings 
+# HISTFILE=".histfile"             # Save 100000 lines of history
 HISTSIZE=100000
 SAVEHIST=100000
 setopt BANG_HIST                 # Treat the '!' character specially during expansion.
@@ -12,34 +12,29 @@ setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded 
 setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
 setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
 
-zstyle ':omz:update' mode reminder 
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-ZSH_CUSTOM=$ZDOTDIR/custom
-plugins=(git z vi-mode zsh-autosuggestions zsh-syntax-highlighting)
-VI_MODE_SET_CURSOR=false
+plugins=(git z vi-mode zsh-autosuggestions zsh-syntax-highlighting aliases alias-finder)
+VI_MODE_SET_CURSOR=true
+export FZF_DEFAULT_OPTS='--layout=reverse'
 
-alias python='python3'
-alias l="ls -CAF --color=auto"
-alias ls="ls -CAF --color=auto"
-alias grep="grep --color=auto"
-alias gs='git status'
-alias hgrep='history | grep '
-alias cat='bat'
+zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
+zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
+zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
+zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
 
 source $ZSH/oh-my-zsh.sh
-source $HOME/fzf-git.sh
-eval "$(fzf --zsh)"
+
+alias grep="grep --color=auto"
+alias cat='bat'
+
+# Brew/Mise/fzf
+export PATH=/opt/homebrew/bin:$PATH
 eval "$(~/.local/bin/mise activate zsh)"
+eval "$(fzf --zsh)"
 
-function tn() (
-    if [ -n "$1" ]
-      then
-         tmux switch -t $1
-      else
-         echo "no session name"
-     fi
-  )
+ZSH_THEME="robbyrussell"
 
+# Theme
 autoload -Uz colors
 colors
 bg1='#259'; bg2='238'; bg3='236';
@@ -49,3 +44,4 @@ PROMPT_OS_AND_KERNEL="%K{$bg2}%F{$fg2}%m %(!.%K{red}%F{$bg2}.%K{$bg3}%F{$bg2})�
 PROMPT_DIRECTORY="%(!.%K{red}%F{white}.%K{$bg3}%F{$fg3})%1~ %(!.%k%F{red}.%k%F{$bg3})"
 # GIT_INFO='%(!.%K{red}%F{white}.%K{$bg4}%F{$fg4})$(git_prompt_info)%(!.%k%F{red}.%k%F{$bg4})'
 PROMPT="${PROMPT_HOSTNAME} ${PROMPT_OS_AND_KERNEL} ${PROMPT_DIRECTORY}%f%k "
+

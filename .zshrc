@@ -2,8 +2,6 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Brew/Mise
 export PATH=/opt/homebrew/bin:$PATH
-export PATH=$HOME/.local/share/mise/installs/fzf/0.56.2/bin:$PATH
-eval "$(~/.local/bin/mise activate zsh)"
 source <(fzf --zsh)
 
 # Settings
@@ -37,26 +35,27 @@ plugins=(
     zsh-syntax-highlighting
     aliases
     alias-finder
+    vscode
 )
 
+
+
 # omz settings
-ZSH_THEME="robbyrussell"
+# export ZSH_THEME="afowler"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-VI_MODE_SET_CURSOR=true
+VI_MODE_SET_CURSOR=false
 
 source $ZSH/oh-my-zsh.sh
 
 # Theme
-autoload -Uz colors
-colors
-bg1='#259'
-bg2='238'
-bg3='236'
-fg1='#cee'
-fg2='#ccc'
-fg3='248'
-PROMPT_HOSTNAME="%K{$bg1}%F{$fg1} %n %K{$bg2}%F{$bg1}"
-PROMPT_OS_AND_KERNEL="%K{$bg2}%F{$fg2}%m %(!.%K{red}%F{$bg2}.%K{$bg3}%F{$bg2})"
-PROMPT_DIRECTORY="%(!.%K{red}%F{white}.%K{$bg3}%F{$fg3})%1~ %(!.%k%F{red}.%k%F{$bg3})"
-# GIT_INFO='%(!.%K{red}%F{white}.%K{$bg4}%F{$fg4})$(git_prompt_info)%(!.%k%F{red}.%k%F{$bg4})'
-PROMPT="${PROMPT_HOSTNAME} ${PROMPT_OS_AND_KERNEL} ${PROMPT_DIRECTORY}%f%k "
+autoload -Uz vcs_info
+precmd() { vcs_info }
+
+zstyle ':vcs_info:git:*' formats '%b '
+
+setopt PROMPT_SUBST
+PROMPT='%F{green}%*%f %F{blue}%~%f %F{red}${vcs_info_msg_0_}%f$ '
+
+
+eval "$(/Users/retry/.local/bin/mise activate zsh)"
+eval "$(~/.local/bin/mise activate zsh)"
